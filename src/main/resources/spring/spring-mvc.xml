@@ -47,6 +47,8 @@
     <bean id="getRecordInfo" class="com.example.GetRecordInfo"/>
     <bean id="test1" class="com.example.Test"/>
 
+    <bean id="springContextHelper" class="com.example.SpringContextHelper"/>
+
     <bean id="trRegexpAdvisor"
           class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
         <property name="advice">

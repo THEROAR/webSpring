@@ -27,6 +27,8 @@ public class UserController {
         if (username.equals("admin") && password.equals("admin")) {
             model.addAttribute("username", username);
             testT.getReflectField();
+            TestInterface testInterface = (TestInterface)SpringContextHelper.getBean("test1");
+            System.out.println(testInterface);
             return "ok.jsp";
         } else {
             model.addAttribute("username", username);

@@ -21,6 +21,14 @@
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
   </servlet>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring-mvc.xml</param-value>
+  </context-param>
   <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
     <url-pattern>*.spring</url-pattern>
