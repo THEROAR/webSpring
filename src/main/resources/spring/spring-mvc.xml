@@ -61,6 +61,8 @@
         </property>
     </bean>
 
+
+
     <!-- ### 代理工程
     <bean id="proxyFactory" class="org.springframework.aop.framework.ProxyFactoryBean">
 
@@ -77,4 +79,9 @@
     </bean>-->
 
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView"  value="/WEB-INF/error.jsp"/>
+    </bean>
+
 </beans>

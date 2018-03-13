@@ -15,9 +15,9 @@ public class Test implements TestInterface {
                     if (object instanceof String) {
                         return object.toString();
                     }
-                } catch (InstantiationException e) {
+                }  catch (IllegalAccessException e) {
                     e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (InstantiationException e) {
                     e.printStackTrace();
                 }
 
