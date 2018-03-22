@@ -1,7 +1,7 @@
-package com.example.core.token;
+package com.example.core.shiro.token;
 
 import com.example.common.model.UUser;
-import com.example.core.token.manager.TokenManager;
+import com.example.core.shiro.token.manager.TokenManager;
 import com.example.user.UUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -13,7 +13,6 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
-import java.util.Set;
 
 
 /**

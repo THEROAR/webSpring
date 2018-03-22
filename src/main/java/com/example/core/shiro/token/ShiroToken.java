@@ -1,4 +1,4 @@
-package com.example.core.token;
+package com.example.core.shiro.token;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 

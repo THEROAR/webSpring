@@ -27,7 +27,7 @@ public class IConfig {
 	/**
 	 * 配置文件名称
 	 */
-	private final static String FILE_NAME = "/config.properties";
+	private final static String FILE_NAME = "/spring/config.properties";
 	
 	static{
 		prop = new Properties();
@@ -54,7 +54,7 @@ public class IConfig {
 	
 	/**
 	 */
-	public static String get(String key){
+	public static String  get(String key){
 		return prop.getProperty(key);
 	}
 	

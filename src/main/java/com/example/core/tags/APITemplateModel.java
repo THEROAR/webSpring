@@ -1,9 +1,7 @@
 package com.example.core.tags;
 
-
 import com.example.common.utils.LoggerUtils;
 import com.example.common.utils.SpringContextUtil;
-import com.example.core.statics.Constant;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 
@@ -40,8 +38,8 @@ public class APITemplateModel extends WYFTemplateModel {
 			throws TemplateModelException {
 		
 		Map<String, TemplateModel> paramWrap = null ;
-		if(null != params && params.size() != 0 || null != params.get(Constant.TARGET)){
-			String name =  params.get(Constant.TARGET).toString() ;
+		if(null != params && params.size() != 0 || null != params.get("target")){
+			String name =  params.get("target").toString() ;
 			paramWrap = new HashMap<String, TemplateModel>(params);
 			
 			/**
@@ -52,7 +50,7 @@ public class APITemplateModel extends WYFTemplateModel {
 			Object result = tag.result(params);
 			
 			//输出
-			paramWrap.put(Constant.OUT_TAG_NAME, DEFAULT_WRAPPER.wrap(result));
+			paramWrap.put("outTagName", DEFAULT_WRAPPER.wrap(result));
 		}else{
 			LoggerUtils.error(getClass(), "Cannot be null, must include a 'name' attribute!");
 		}

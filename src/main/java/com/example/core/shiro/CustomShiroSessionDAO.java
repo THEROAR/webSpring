@@ -44,7 +44,8 @@ public class CustomShiroSessionDAO extends AbstractSessionDAO{
 
   
     @Override  
-    protected Serializable doCreate(Session session) {  
+    protected Serializable doCreate(Session session) {
+        System.out.print("此时创建一个新的session");
         Serializable sessionId = this.generateSessionId(session);  
         this.assignSessionId(session, sessionId);  
         getShiroSessionRepository().saveSession(session);  

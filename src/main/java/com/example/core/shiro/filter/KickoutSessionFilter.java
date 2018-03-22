@@ -1,10 +1,12 @@
 package com.example.core.shiro.filter;
 
 
+import com.example.common.model.UUser;
 import com.example.common.utils.LoggerUtils;
 import com.example.core.shiro.cache.VCache;
 import com.example.core.shiro.session.ShiroSessionRepository;
-import com.example.core.token.manager.TokenManager;
+
+import com.example.core.shiro.token.manager.TokenManager;
 import net.sf.json.JSONObject;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -44,9 +46,13 @@ public class KickoutSessionFilter extends AccessControlFilter {
         HttpServletRequest httpRequest = ((HttpServletRequest)request);
         String url = httpRequest.getRequestURI();
         Subject subject = getSubject(request, response);
+        UUser user = (UUser)subject.getPrincipal();
+        System.out.println("这时用户的数据" + user.getEmail());
         if(url.startsWith("/open/") || (!subject.isAuthenticated() && !subject.isRemembered())){
+            System.out.println("此时用户处于未登录状态");
             return Boolean.TRUE;
         }
+        System.out.println("此时用户处于已经登录状态");
         Session session = subject.getSession();
         Serializable sessionId = session.getId();
 
@@ -72,9 +78,11 @@ public class KickoutSessionFilter extends AccessControlFilter {
         LinkedHashMap<Long, Serializable> infoMap = cache.get(ONLINE_USER, LinkedHashMap.class);
         //如果不存在，创建一个新的
         infoMap = null == infoMap ? new LinkedHashMap<Long, Serializable>() : infoMap;
+        System.out.println(infoMap.keySet());
 
         //获取tokenId
         Long userId = TokenManager.getUserId();
+        System.out.println("此时用户的userId是" + userId);
 
         //如果已经包含当前Session，并且是同一个用户，跳过。
         if(infoMap.containsKey(userId) && infoMap.containsValue(sessionId)){
@@ -95,6 +103,8 @@ public class KickoutSessionFilter extends AccessControlFilter {
                 oldSession.setAttribute(KICKOUT_STATUS, Boolean.TRUE);
                 shiroSessionRepository.saveSession(oldSession);//更新session
                 LoggerUtils.fmtDebug(getClass(), "kickout old session success,oldId[%s]",oldSessionId);
+                infoMap.put(userId, sessionId);
+                cache.setex(ONLINE_USER, infoMap, 3600);
             }else{
                 shiroSessionRepository.deleteSession(oldSessionId);
                 infoMap.remove(userId);

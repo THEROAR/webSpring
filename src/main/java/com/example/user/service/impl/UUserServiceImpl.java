@@ -4,10 +4,12 @@ import com.example.common.dao.UUserMapper;
 import com.example.common.model.UUser;
 import com.example.user.UUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class UUserServiceImpl implements UUserService {
 
     @Autowired

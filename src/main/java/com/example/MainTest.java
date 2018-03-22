@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.core.config.IConfig;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -10,9 +11,10 @@ public class MainTest {
      * @param args
      */
     public static void main(String args[]) {
-        ApplicationContext ctx = new FileSystemXmlApplicationContext("classpath:spring/spring-mvc.xml");
-        TestInterface test1 = (TestInterface)ctx.getBean("proxyFactory");
-        test1.getReflectField();
+        Object o = IConfig.class.getResourceAsStream("/spring/config.properties");
+        if (o == null) {
+            System.out.print("失败");
+        }
 
     }
 }

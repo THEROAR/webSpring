@@ -2,7 +2,8 @@ package com.example.core.shiro.filter;
 
 import com.example.common.model.UUser;
 import com.example.common.utils.LoggerUtils;
-import com.example.core.token.manager.TokenManager;
+
+import com.example.core.shiro.token.manager.TokenManager;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;

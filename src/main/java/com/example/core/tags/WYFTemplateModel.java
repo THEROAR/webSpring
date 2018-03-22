@@ -1,11 +1,11 @@
 package com.example.core.tags;
 
 
-
 import com.example.core.freemaker.utils.FreemarkerTagUtil;
+
 import freemarker.core.Environment;
 import freemarker.template.*;
-import freemarker.template.TemplateDirectiveModel;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -28,19 +28,21 @@ import java.util.Map;
  * @version 1.0,2014年4月28日 <br/>
  * 
  */
-
+@SuppressWarnings("unchecked")
 public abstract class WYFTemplateModel implements TemplateDirectiveModel{
 
+	
+
 	public void execute(Environment env, Map params, TemplateModel[] loopVars,
-						TemplateDirectiveBody body) throws TemplateException, IOException {
-
-
+			TemplateDirectiveBody body) throws TemplateException, IOException {
+		
+		
 		/**
 		 * 模版方法模式，把变化委派下去，交给子类实现！
 		 */
 		Map<String, TemplateModel> paramWrap = putValue(params);
-
-
+		
+		
 		Map<String, TemplateModel> origMap = FreemarkerTagUtil.convertToTemplateModel(env, paramWrap);
 		body.render(env.getOut());
 		FreemarkerTagUtil.clearTempleModel(env, paramWrap, origMap);
